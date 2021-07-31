@@ -1,6 +1,6 @@
 using System;
 
-namespace Infrastructure.Models
+namespace PayPal.Models
 {
 	public class ProcessEntity<T>
 	{

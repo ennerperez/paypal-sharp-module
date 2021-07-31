@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Infrastructure.Models
+namespace PayPal.Models
 {
 	public class Error
 	{

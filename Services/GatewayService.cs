@@ -1,22 +1,20 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
-using Abstractions.Services;
-using Infrastructure.Models;
+using PayPal.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using PayPal.Interfaces;
 
-namespace Infrastructure.Services
+namespace PayPal.Services
 {
-	public class PaymentGatewayService : IPaymentGatewayService
+	public class GatewayService : IGatewayService
 	{
 		public static string AuthToken;
 		private readonly ILogger _logger;
@@ -24,7 +22,7 @@ namespace Infrastructure.Services
 
 		private readonly GatewayOptions _options;
 
-		public PaymentGatewayService(ILoggerFactory loggerFactory, IOptionsMonitor<GatewayOptions> optionsMonitor)
+		public GatewayService(ILoggerFactory loggerFactory, IOptionsMonitor<GatewayOptions> optionsMonitor)
 		{
 			_logger = loggerFactory.CreateLogger(GetType());
 			_options = optionsMonitor.CurrentValue;

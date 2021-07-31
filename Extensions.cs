@@ -1,19 +1,17 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
-using Abstractions.Services;
-using Infrastructure.Models;
-using Infrastructure.Services;
+using PayPal.Interfaces;
+using PayPal.Models;
+using PayPal.Services;
 
-namespace Infrastructure
+namespace PayPal
 {
-	public static class Extensions
-	{
-
-		public static IServiceCollection AddPayPalServices(this IServiceCollection services, Action<GatewayOptions> configureOptions)
-		{
-			services.AddSingleton<IPaymentGatewayService, PaymentGatewayService>().Configure(configureOptions);
-
-			return services;
-		}
-	}
+    public static class Extensions
+    {
+        public static IServiceCollection AddPayPalServices(this IServiceCollection services, Action<GatewayOptions> configureOptions)
+        {
+            services.AddSingleton<IGatewayService, GatewayService>().Configure(configureOptions);
+            return services;
+        }
+    }
 }
