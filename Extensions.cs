@@ -8,7 +8,7 @@ namespace PayPal
 {
     public static class Extensions
     {
-        public static IServiceCollection AddPayPalServices(this IServiceCollection services, Action<GatewayOptions> configureOptions)
+        public static IServiceCollection AddPayPal(this IServiceCollection services, Action<GatewayOptions> configureOptions)
         {
             services.AddSingleton<IGatewayService, GatewayService>().Configure(configureOptions);
             return services;
