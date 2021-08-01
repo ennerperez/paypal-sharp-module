@@ -1,6 +1,6 @@
-namespace PayPal.Models
+namespace PayPal
 {
-	public class GatewayOptions
+	public class Options
 	{
 		public string ClientId { get; set; }
 		public string ClientSecret { get; set; }
