@@ -15,11 +15,11 @@ namespace PayPal
             
             services.AddSingleton<IPayPalService<Product>, ProductService>();
             services.AddSingleton<IPayPalService<Plan>, PlanService>();
-            services.AddSingleton<IPayPalService<Subscription>, SubscriptionsesService>();
+            services.AddSingleton<IPayPalService<Subscription>, SubscriptionService>();
             
             services.AddSingleton<IProductService, ProductService>();
             services.AddSingleton<IPlanService, PlanService>();
-            services.AddSingleton<ISubscriptionService, SubscriptionsesService>();
+            services.AddSingleton<ISubscriptionService, SubscriptionService>();
             
             services.AddSingleton<Wrapper>();
             

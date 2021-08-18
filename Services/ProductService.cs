@@ -22,39 +22,39 @@ namespace PayPal.Services
 
         public async Task<IReadOnlyList<Product>> ListAsync() //int page_size = 20, int page = 1, bool total_required = true)
         {
-            var _client = await _factory.CreateAsync();
+            var client = await _factory.CreateAsync();
 
-            var result = await _client.HttpClient.GetAsync($"{_client.Url}v1/catalogs/products");
+            var result = await client.HttpClient.GetAsync($"{client.Url}v1/catalogs/products");
             if (!result.IsSuccessStatusCode)
                 throw new UnauthorizedAccessException("Unable to get the product list.");
 
-            var responseModel = await _client.ProcessResponse<JArray>(result, "products");
+            var responseModel = await client.ProcessResponse<JArray>(result, "products");
             return responseModel.Data.ToObject<IReadOnlyList<Product>>();
         }
 
         public async Task<Product> CreateAsync(Product model)
         {
-            var _client = await _factory.CreateAsync();
+            var client = await _factory.CreateAsync();
 
             var data = JsonConvert.SerializeObject(model, Formatting.None, new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore, DateTimeZoneHandling = DateTimeZoneHandling.Utc});
             var content = new StringContent(data, Encoding.UTF8, "application/json");
 
-            var result = await _client.HttpClient.PostAsync($"{_client.Url}v1/catalogs/products", content);
+            var result = await client.HttpClient.PostAsync($"{client.Url}v1/catalogs/products", content);
             if (!result.IsSuccessStatusCode)
                 throw new UnauthorizedAccessException("Unable to create the product.");
 
-            var responseModel = await _client.ProcessResponse<JObject>(result);
+            var responseModel = await client.ProcessResponse<JObject>(result);
             return responseModel.Data.ToObject<Product>();
         }
 
         public async Task<bool> UpdateAsync(string id, RequestPatch model)
         {
-            var _client = await _factory.CreateAsync();
+            var client = await _factory.CreateAsync();
 
             var data = JsonConvert.SerializeObject(model, Formatting.None, new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore, DateTimeZoneHandling = DateTimeZoneHandling.Utc});
             var content = new StringContent(data, Encoding.UTF8, "application/json");
 
-            var result = await _client.HttpClient.PatchAsync($"{_client.Url}v1/catalogs/products/{id}", content);
+            var result = await client.HttpClient.PatchAsync($"{client.Url}v1/catalogs/products/{id}", content);
             if (!result.IsSuccessStatusCode)
                 throw new UnauthorizedAccessException("Unable to update the product.");
 
@@ -63,13 +63,13 @@ namespace PayPal.Services
 
         public async Task<Product> DetailsAsync(string id)
         {
-            var _client = await _factory.CreateAsync();
+            var client = await _factory.CreateAsync();
 
-            var result = await _client.HttpClient.GetAsync($"{_client.Url}v1/catalogs/products/{id}");
+            var result = await client.HttpClient.GetAsync($"{client.Url}v1/catalogs/products/{id}");
             if (!result.IsSuccessStatusCode)
                 throw new UnauthorizedAccessException("Unable to open the product.");
 
-            var responseModel = await _client.ProcessResponse<JObject>(result);
+            var responseModel = await client.ProcessResponse<JObject>(result);
             return responseModel.Data.ToObject<Product>();
         }
 
