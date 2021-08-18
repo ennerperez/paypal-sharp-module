@@ -21,16 +21,16 @@ namespace PayPal.Interfaces
         Task<bool> DeactivateAsync(string id);
     }
 
-    public interface IProductsService : IPayPalService<Product>
+    public interface IProductService : IPayPalService<Product>
     {
     }
 
-    public interface IPlansService : IPayPalService<Plan>
+    public interface IPlanService : IPayPalService<Plan>
     {
         Task<bool> UpdatePricingAsync(string id, PricingScheme model);
     }
 
-    public interface ISubscriptionsService : IPayPalService<Subscription>
+    public interface ISubscriptionService : IPayPalService<Subscription>
     {
         Task<bool> SuspendAsync(string id, string reason);
         Task<bool> CancelAsync(string id, string reason);

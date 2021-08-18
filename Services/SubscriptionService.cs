@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -12,13 +11,13 @@ using PayPal.Shared;
 
 namespace PayPal.Services
 {
-    public class SubscriptionsesService : ISubscriptionsService
+    public class SubscriptionsesService : ISubscriptionService
     {
         private readonly Factory _factory;
 
         public SubscriptionsesService(Factory factory)
         {
-            _factory = factory ?? throw new ArgumentNullException(nameof(Factory));
+            _factory = factory ?? throw new ArgumentNullException(nameof(factory));
         }
 
         public Task<IReadOnlyList<Subscription>> ListAsync() //int page_size = 20, int page = 1, bool total_required = true)
@@ -87,7 +86,7 @@ namespace PayPal.Services
         {
             var _client = await _factory.CreateAsync();
 
-            var data = JsonConvert.SerializeObject(new {reason = reason}, Formatting.None, new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore, DateTimeZoneHandling = DateTimeZoneHandling.Utc});
+            var data = JsonConvert.SerializeObject(new { reason}, Formatting.None, new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore, DateTimeZoneHandling = DateTimeZoneHandling.Utc});
             var content = new StringContent(data, Encoding.UTF8, "application/json");
 
             var result = await _client.HttpClient.PostAsync($"{_client.Url}v1/billing/subscriptions/{id}/cancel", content);
@@ -101,7 +100,7 @@ namespace PayPal.Services
         {
             var _client = await _factory.CreateAsync();
 
-            var data = JsonConvert.SerializeObject(new {reason = reason}, Formatting.None, new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore, DateTimeZoneHandling = DateTimeZoneHandling.Utc});
+            var data = JsonConvert.SerializeObject(new { reason}, Formatting.None, new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore, DateTimeZoneHandling = DateTimeZoneHandling.Utc});
             var content = new StringContent(data, Encoding.UTF8, "application/json");
 
             var result = await _client.HttpClient.PostAsync($"{_client.Url}v1/billing/subscriptions/{id}/suspend", content);

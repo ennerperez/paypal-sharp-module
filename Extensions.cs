@@ -13,13 +13,13 @@ namespace PayPal
             services.AddHttpClient<PayPalService>("PayPalService");
             services.AddSingleton<Factory>().Configure(configureOptions);
             
-            services.AddSingleton<IPayPalService<Product>, ProductsService>();
-            services.AddSingleton<IPayPalService<Plan>, PlansService>();
+            services.AddSingleton<IPayPalService<Product>, ProductService>();
+            services.AddSingleton<IPayPalService<Plan>, PlanService>();
             services.AddSingleton<IPayPalService<Subscription>, SubscriptionsesService>();
             
-            services.AddSingleton<IProductsService, ProductsService>();
-            services.AddSingleton<IPlansService, PlansService>();
-            services.AddSingleton<ISubscriptionsService, SubscriptionsesService>();
+            services.AddSingleton<IProductService, ProductService>();
+            services.AddSingleton<IPlanService, PlanService>();
+            services.AddSingleton<ISubscriptionService, SubscriptionsesService>();
             
             services.AddSingleton<Wrapper>();
             

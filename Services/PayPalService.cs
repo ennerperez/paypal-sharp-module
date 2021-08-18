@@ -7,10 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using PayPal.Models;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using PayPal.Interfaces;
 
 namespace PayPal.Services
 {

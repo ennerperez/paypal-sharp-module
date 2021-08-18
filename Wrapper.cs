@@ -4,19 +4,19 @@ namespace PayPal
 {
     public class Wrapper
     {
-        private readonly IProductsService _productsService;
-        private readonly IPlansService _plansService;
-        private readonly ISubscriptionsService _subscriptionsService;
+        private readonly IProductService _productService;
+        private readonly IPlanService _planService;
+        private readonly ISubscriptionService _subscriptionService;
 
-        public Wrapper(IProductsService productsService, IPlansService plansService, ISubscriptionsService subscriptionsService)
+        public Wrapper(IProductService productService, IPlanService planService, ISubscriptionService subscriptionService)
         {
-            _productsService = productsService;
-            _plansService = plansService;
-            _subscriptionsService = subscriptionsService;
+            _productService = productService;
+            _planService = planService;
+            _subscriptionService = subscriptionService;
         }
 
-        public IProductsService Products => _productsService;
-        public IPlansService Plans => _plansService;
-        public ISubscriptionsService Subscriptions => _subscriptionsService;
+        public IProductService Product => _productService;
+        public IPlanService Plan => _planService;
+        public ISubscriptionService Subscription => _subscriptionService;
     }
 }

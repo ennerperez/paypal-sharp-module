@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -12,13 +11,13 @@ using PayPal.Shared;
 
 namespace PayPal.Services
 {
-    public class PlansService : IPlansService
+    public class PlanService : IPlanService
     {
         private readonly Factory _factory;
 
-        public PlansService(Factory factory)
+        public PlanService(Factory factory)
         {
-            _factory = factory ?? throw new ArgumentNullException(nameof(Factory));
+            _factory = factory ?? throw new ArgumentNullException(nameof(factory));
         }
 
         public async Task<IReadOnlyList<Plan>> ListAsync() //int page_size = 20, int page = 1, bool total_required = true)
