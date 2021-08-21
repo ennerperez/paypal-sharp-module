@@ -37,6 +37,7 @@ namespace PayPal.Services
                 throw new UnauthorizedAccessException("Unable to create the subscription.");
 
             var responseModel = await client.ProcessResponse<JObject>(result);
+            
             return responseModel.Data.ToObject<Subscription>();
         }
 
@@ -63,6 +64,7 @@ namespace PayPal.Services
                 throw new UnauthorizedAccessException("Unable to open the subscription.");
 
             var responseModel = await client.ProcessResponse<JObject>(result);
+            var status = responseModel.Data["status"];
             return responseModel.Data.ToObject<Subscription>();
         }
 
@@ -71,6 +73,7 @@ namespace PayPal.Services
             var client = await _factory.CreateAsync();
 
             var result = await client.HttpClient.GetAsync($"{client.Url}v1/billing/subscriptions/{id}/activate");
+                                                                                                
             if (!result.IsSuccessStatusCode)
                 throw new UnauthorizedAccessException("Unable to activate the subscription.");
 
