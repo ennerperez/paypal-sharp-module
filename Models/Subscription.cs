@@ -78,11 +78,14 @@ namespace PayPal.Models
 		[JsonProperty("plan_id")]
 		public string PlanId { get; set; }
 
+        [JsonProperty("quantity")]
+        public int Quantity { get; set; }
+
         [JsonProperty("shipping_amount")]
         public ShippingAmount ShippingAmount { get; set; }
 
 		[JsonProperty("start_time")]
-		public string StartTime { get; set; }
+		public DateTime StartTime { get; set; }
 
 		[JsonProperty("subscriber")]
 		public Subscriber Subscriber { get; set; }
