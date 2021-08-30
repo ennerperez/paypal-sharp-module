@@ -85,7 +85,7 @@ namespace PayPal.Models
         public ShippingAmount ShippingAmount { get; set; }
 
 		[JsonProperty("start_time")]
-		public DateTime StartTime { get; set; }
+		public string StartTime { get; set; }
 
 		[JsonProperty("subscriber")]
 		public Subscriber Subscriber { get; set; }
