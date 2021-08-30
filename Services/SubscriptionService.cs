@@ -68,10 +68,10 @@ namespace PayPal.Services
             return responseModel.Data.ToObject<Subscription>();
         }
 
-        public async Task<bool> ActivateAsync(string id )
+        public async Task<bool> ActivateAsync(string id, string reason)
         {
             var client = await _factory.CreateAsync();
-            const string reason = "testactivate1";
+            
             var data = JsonConvert.SerializeObject(new { reason}, Formatting.None, new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore, DateTimeZoneHandling = DateTimeZoneHandling.Utc});
             var content = new StringContent(data, Encoding.UTF8, "application/json");
             
@@ -80,15 +80,7 @@ namespace PayPal.Services
                 throw new UnauthorizedAccessException("Unable to suspend the subscription.");
 
             return true;
-            
-            // var client = await _factory.CreateAsync();
-            // //https://api-m.sandbox.paypal.com/v1/billing/subscriptions/I-HRYELF4CBW0J/activate
-            // var result = await client.HttpClient.GetAsync($"{client.Url}v1/billing/subscriptions/{id}/activate");
-            //                                                                                     
-            // if (!result.IsSuccessStatusCode)
-            //     throw new UnauthorizedAccessException("Unable to activate the subscription.");
-            //
-            // return true;
+           
         }
 
         public Task<bool> DeactivateAsync(string id)

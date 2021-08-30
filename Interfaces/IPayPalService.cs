@@ -16,7 +16,7 @@ namespace PayPal.Interfaces
 
         Task<T> DetailsAsync(string id);
 
-        Task<bool> ActivateAsync(string id);
+        Task<bool> ActivateAsync(string id, string reason);
 
         Task<bool> DeactivateAsync(string id);
     }
