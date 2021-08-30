@@ -73,7 +73,7 @@ namespace PayPal.Services
             return responseModel.Data.ToObject<Plan>();
         }
 
-        public async Task<bool> ActivateAsync(string id)
+        public async Task<bool> ActivateAsync(string id, string reason)
         {
             var client = await _factory.CreateAsync();
 

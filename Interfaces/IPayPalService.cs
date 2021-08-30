@@ -33,6 +33,7 @@ namespace PayPal.Interfaces
     public interface ISubscriptionService : IPayPalService<Subscription>
     {
         Task<bool> SuspendAsync(string id, string reason);
+        Task<bool> ActivateAsync(string id, string reason);
         Task<bool> CancelAsync(string id, string reason);
     }
 }

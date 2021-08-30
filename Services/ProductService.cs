@@ -73,7 +73,7 @@ namespace PayPal.Services
             return responseModel.Data.ToObject<Product>();
         }
 
-        public Task<bool> ActivateAsync(string id)
+        public Task<bool> ActivateAsync(string id, string reason)
         {
             throw new NotImplementedException();
         }
