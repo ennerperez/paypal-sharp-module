@@ -16,6 +16,15 @@ namespace PayPal.Shared
         public string Property { get; set; }
 
         [JsonProperty("value")]
-        public string Value { get; set; }
+        public Value Value { get; set; }
+    }
+
+    public class Value
+    {
+        [JsonProperty("currency_code")]
+        public string currencyCode { get; set; }
+
+        [JsonProperty("value")]
+        public string value { get; set; }
     }
 }
