@@ -51,8 +51,24 @@ namespace PayPal.Services
             var result = await client.HttpClient.PatchAsync($"{client.Url}v1/billing/subscriptions/{id}", content);
             if (!result.IsSuccessStatusCode)
                 throw new UnauthorizedAccessException("Unable to update the subscription.");
-
+            
             return true;
+        }
+
+        public async Task<Subscription> ReviseAsync(string id, Subscription model)
+        {
+            var client = await _factory.CreateAsync();
+
+            var data = JsonConvert.SerializeObject(model, Formatting.None, new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore, DateTimeZoneHandling = DateTimeZoneHandling.Utc});
+            var content = new StringContent(data, Encoding.UTF8, "application/json");
+                                                                                                
+            var result = await client.HttpClient.PostAsync($"{client.Url}v1/billing/subscriptions/{id}/revise", content);
+            if (!result.IsSuccessStatusCode)
+                throw new UnauthorizedAccessException("Unable to update the subscription.");
+
+            var responseModel = await client.ProcessResponse<JObject>(result);
+            
+            return responseModel.Data.ToObject<Subscription>();
         }
 
         public async Task<Subscription> DetailsAsync(string id)
@@ -78,9 +94,8 @@ namespace PayPal.Services
             var result = await client.HttpClient.PostAsync($"{client.Url}v1/billing/subscriptions/{id}/activate", content);
             if (!result.IsSuccessStatusCode)
                 throw new UnauthorizedAccessException("Unable to suspend the subscription.");
-
+            
             return true;
-           
         }
 
         public Task<bool> DeactivateAsync(string id)

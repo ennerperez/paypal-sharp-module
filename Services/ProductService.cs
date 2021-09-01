@@ -61,6 +61,11 @@ namespace PayPal.Services
             return true;
         }
 
+        public Task<Product> ReviseAsync(string id, Product model)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Product> DetailsAsync(string id)
         {
             var client = await _factory.CreateAsync();

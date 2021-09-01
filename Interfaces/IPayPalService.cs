@@ -13,6 +13,8 @@ namespace PayPal.Interfaces
         Task<T> CreateAsync(T model);
 
         Task<bool> UpdateAsync(string id, RequestPatch model);
+        
+        Task<T> ReviseAsync(string id, T model);
 
         Task<T> DetailsAsync(string id);
 
@@ -34,6 +36,7 @@ namespace PayPal.Interfaces
     {
         Task<bool> SuspendAsync(string id, string reason);
         Task<bool> ActivateAsync(string id, string reason);
+        
         Task<bool> CancelAsync(string id, string reason);
     }
 }

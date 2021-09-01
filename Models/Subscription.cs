@@ -69,9 +69,6 @@ namespace PayPal.Models
 
 	public class Subscription
 	{
-        // "status": "ACTIVE",
-        // "status_update_time": "2020-03-22T10:43:33Z",
-        
         [JsonProperty("status")]
         public string Status { get; set; }
         
@@ -83,6 +80,9 @@ namespace PayPal.Models
 
         [JsonProperty("shipping_amount")]
         public ShippingAmount ShippingAmount { get; set; }
+        
+        [JsonProperty("shipping_address")]
+        public ShippingAddress shippingAddress { get; set; }
 
 		[JsonProperty("start_time")]
 		public string StartTime { get; set; }
@@ -104,5 +104,17 @@ namespace PayPal.Models
 
         [JsonProperty("currency_code")]
         public string CurrencyCode { get; set; }
+    }
+
+    public class ShippingAddress
+    {
+        [JsonProperty("name")]
+        public NameF NameF { get; set; }
+    }
+
+    public class NameF
+    {
+        [JsonProperty("full_name")]
+        public string FullName { get; set; }
     }
 }
